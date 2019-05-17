@@ -1,5 +1,5 @@
 {
-    "evn" : {
+    "env" : {
         "MONGO_ATLAS_PW" : "admin"
     }
 }
