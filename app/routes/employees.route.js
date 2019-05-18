@@ -3,11 +3,12 @@ const express = require('express');
 const router = express.Router();
 
 // import controller
-const controllerProject = require('../controllers/projects.controller');
+const controllerProject = require('../controllers/employees.controller');
 
 // content
 router.route('/')
-    .get(controllerProject.index);
+    .get(controllerProject.index)
+    .post(controllerProject.newProject)
 
 
 // Export module
