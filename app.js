@@ -19,24 +19,23 @@ mongoose.connect(
     }
 );
 
+// import file route
+const employee = require('./app/controllers/employees.controller');
+
 // Content
 const app = express();
 
 app.use(logger('dev'));
 
-// import file route
-const employee = require('./app/routes/employees.route');
-
-// Define router for file file route imported
-app.use('/employee', employee);
-
 /** Set up bodyparser */
-app.set(bodyParser.urlencoded({ extended: false }));
-app.set(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 app.set('views', path.join(__dirname, '/views'));
 app.engine('ejs', exphbs({ extname: 'ejs', defaultLayout: 'index', layoutsDir: __dirname + '/views/layouts/'}));
 app.set('view engine', 'ejs');
 
+// Define router, import file route(controller)
+app.use('/employee', employee);
 
 // Module exports
 module.exports = app;
