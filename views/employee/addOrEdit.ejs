@@ -3,20 +3,26 @@
 <form action="/employee" method="POST" autocomplete="on">
     <div class="form-group">
         <label>Full name</label>
-        <input type="text" class="form-control" name="fullname" placeholder="Full name" autofocus>
+        <input type="text" class="form-control" name="fullName" placeholder="Full name" value="{{employee.fullName}}" autofocus>
+        <div class="text-danger">
+            {{employee.fullNameError}}
+        </div>
     </div>
     <div class="form-group">
         <label>Email</label>
-        <input type="text" class="form-control" name="email" placeholder="Email">
+        <input type="text" class="form-control" name="email" placeholder="Email" value="{{employee.email}}">
+        <div class="text-danger">
+            {{employee.emailError}}
+        </div>
     </div>
     <div class="row" style="margin-left: -15px;">
         <div class="form-group col-md-6">
             <label>Phone</label>
-            <input type="text" class="form-control" name="phone" placeholder="Phone">
+            <input type="text" class="form-control" name="phone" placeholder="Phone" value="{{employee.phone}}">
         </div>
         <div class="form-group col-md-6">
             <label>City</label>
-            <input type="text" class="form-control" name="city" placeholder="City">
+            <input type="text" class="form-control" name="city" placeholder="City" value="{{employee.city}}">
         </div>
     </div>
     <div class="form-group">
