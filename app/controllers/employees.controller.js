@@ -37,7 +37,13 @@ function insertRecord(req, res) {
 }
 
 router.get('/listEmployees', (req, res) => {
-    res.render('employee/listEmployees');
+    Employee.find((err, listEmployees) => {
+        if (err) throw err;
+        res.render('employee/listEmployees', {
+            viewTitle: 'List Employees',
+            listEmployees: listEmployees
+        });
+    });
 });
 
 function handleValidationErrors(err, body) {

@@ -1,1 +1,25 @@
-<div>List Employees</div>
+<div>
+    <h4>{{viewTitle}}</h4>
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Full name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Phone</th>
+                <th scope="col">City</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each listEmployees}}
+            <tr>
+                <th scope="row">{{this._id}}</th>
+                <td>{{this.fullName}}</td>
+                <td>{{this.email}}</td>
+                <td>{{this.phone}}</td>
+                <td>{{this.city}}</td>
+            </tr>
+        </tbody>
+        {{/each}}
+    </table>
+</div>
