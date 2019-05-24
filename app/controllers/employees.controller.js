@@ -61,5 +61,17 @@ function handleValidationErrors(err, body) {
     }
 }
 
+//delete employee
+router.get('/delete/:_id', (req, res) => {
+    Employee.findByIdAndRemove(req.params._id, (err, doc) => {
+        console.log(req.params._id);
+        if (!err) {
+            res.redirect('/employee/listEmployees');
+        } else {
+            console.log("Error can't delete employee : "+ err);
+        }    
+    });
+});
+
 // Export module
 module.exports = router;
