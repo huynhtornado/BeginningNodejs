@@ -6,11 +6,15 @@ const Employee = require('../models/employees.model');
 router.get('/',(req, res) => {
     res.render('employee/addOrEdit', {
         viewTitle: 'Insert Employee'
-    })
+    });
 });
 
 router.post('/', (req, res) => {
-    insertRecord(req, res);
+    if (req.body._id == '') {
+        insertRecord(req, res);
+    } else {
+        updateRecord(req, res);
+    } 
 });
 
 function insertRecord(req, res) {
@@ -72,6 +76,36 @@ router.get('/delete/:_id', (req, res) => {
         }    
     });
 });
+
+router.get('/:_id', (req, res) => {
+    Employee.findById(req.params._id, (err, employee) => {
+        if (!err) {
+            res.render('employee/addOrEdit', {
+                viewTitle: 'Update Employee',
+                employee: employee
+            })
+        } else {
+            console.log("Error not get this ID: "+ err);
+        }
+    });
+})
+
+function updateRecord(req, res) {
+    Employee.findOneAndUpdate({_id: req.body._id}, req.body, { new: true }, (err, doc) => {
+        if (!err) {
+            res.redirect('employee/listemployees');
+        } else {
+            if (err.name == 'ValidationError') {
+                handleValidationErrors(err, req.body);
+                res.render('employee/addOrEdit', {
+                    viewTitle: 'Update Employee',
+                    employee: req.body
+                });
+            }
+            console.log('Error during record insertion : ' + err);    
+        }
+    })
+}
 
 // Export module
 module.exports = router;
